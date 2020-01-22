@@ -1,5 +1,5 @@
 
-#include <string>
+#include "../../stdafx.h"
 
 #define BIT(x) (1 << x)
 
@@ -39,15 +39,29 @@ namespace Brick {
         }
     protected:
         EventType type;
-        int EventCato;
+        int eventCato;
         bool handled = false;
     };
     
     class EventDis
     {
-    private:
-        
+        template<typename T>
+        using EventFn = std::function<bool(T&)>;
     public:
+        EventDis(Event &event) : event(event) {}
+
+        template<typename T>
+        bool dispatch(EventFn<T> func)
+        {
+            if(event.getEventType() == T::getStaticType())
+            {
+                event.handled = func(*(T*)&event);
+                return true;
+            }
+            return false;
+        }
+    private:
+        Event &event;
 
     };    
 
