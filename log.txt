@@ -1,1 +1,4 @@
 21-01-20 4 uur -> videos over opzet gekeken en begonnen aan basic entrypoint
+
+
+23-01-20 2 uur -> windows aangemaakt en glfw gedownload
