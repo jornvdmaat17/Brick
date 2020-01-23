@@ -28,9 +28,9 @@ namespace Brick {
     private:
         friend class EventDis;
     public:
-        virtual EventType getEventType() const = 0;
+        virtual EventType getEventType() const { return type; }
         virtual const char* getName() const = 0;
-        virtual int getEventCatos() const = 0;
+        virtual int getEventCatos() const { return eventCato; }
         virtual std::string ToString() const { return getName(); }
 
         inline bool hasEventCato(EventCato eventCato)
@@ -62,7 +62,6 @@ namespace Brick {
         }
     private:
         Event &event;
-
     };    
 
 }

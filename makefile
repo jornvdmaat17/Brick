@@ -1,6 +1,6 @@
 CC = g++
 # CFLAGS = -pthread
-DEPS = Brick/Brick.h Brick/src/*.h
+DEPS = Brick/Brick.h Brick/EntryPoint.h src/Application.h src.ApplicationWindows.h
 OBJ = App/App.cpp Brick/src/*.cpp
 
 program : $(OBJ)
