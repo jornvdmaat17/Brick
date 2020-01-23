@@ -2,6 +2,7 @@
 
 #include <GLFW/glfw3.h>
 #include "ApplicationWindows.h"
+#include "events/ApplicationEvent.h"
 
 namespace Brick
 {
@@ -12,8 +13,11 @@ namespace Brick
         Application();
         virtual ~Application();
         void run();
+        void onEvent(Event& event);
     private:
-        Window *window;
+        bool onWindowClose(WindowClose& event);
+
+        std::unique_ptr<Window> window;
         bool running = true;
     };
 

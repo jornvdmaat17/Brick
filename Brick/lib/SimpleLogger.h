@@ -1,6 +1,8 @@
 #ifndef _simple_logger_h_
 #define _simple_logger_h_
 
+#pragma once
+
 #include <iostream>
 #include <ctime>
 

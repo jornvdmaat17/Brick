@@ -1,37 +1,43 @@
 #include "Application.h"
-#include "events/ApplicationEvent.h"
-#include "src/Logger.h"
+#include "Logger.h"
+#include "../stdafx.h"
 
 namespace Brick
 {
+    #define BIND_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
     Application::Application()
     {
-        window = Window::create();
+        window = std::unique_ptr<Window>(Window::create());
+        window->setEventCallBack(BIND_FN(onEvent));
     }
 
     Application::~Application()
     {
     }
 
-    void Application::run(){
-        WindowResize e(1280, 720);
-        if(e.hasEventCato(EventCato::APPLICATION_EVENT))
+    void Application::run()
+    {
+        while(running)
         {
-            while(running)
-            {
-                Logger::logBrickInfo(e.getName());
-                glClearColor(1, 0, 0, 1);
-                glClear(GL_COLOR_BUFFER_BIT);
-                window->onUpdate();
-            }
-            if(e.hasEventCato(EventCato::INPUT_EVENT))
-            {
-                Logger::logBrickInfo(e.getName());
-            }
-
-            while(true);
+            glClearColor(1, 0, 0, 1);
+            glClear(GL_COLOR_BUFFER_BIT);
+            window->onUpdate();
         }
     }
+
+    void Application::onEvent(Event& event)
+    {
+        EventDis dispatcher(event);
+        dispatcher.dispatch<WindowClose>(BIND_FN(onWindowClose));
+        Logger::logBrickInfo(event.getName());
+    }
+
+    bool Application::onWindowClose(WindowClose& event)
+    {
+        running = false;
+        return true;
+    }
+
 
 } // namespace Brick
