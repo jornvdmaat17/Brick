@@ -1,9 +1,6 @@
 #include "Application.h"
-<<<<<<< HEAD
-=======
 #include "Logger.h"
 #include "../stdafx.h"
->>>>>>> 025627b... event dispathcer done
 
 namespace Brick
 {
@@ -11,21 +8,14 @@ namespace Brick
 
     Application::Application()
     {
-<<<<<<< HEAD
-=======
         window = std::unique_ptr<Window>(Window::create());
         window->setEventCallBack(BIND_FN(onEvent));
->>>>>>> 025627b... event dispathcer done
     }
 
     Application::~Application()
     {
     }
 
-<<<<<<< HEAD
-    void Application::run(){
-        while(true);
-=======
     void Application::run()
     {
         while(running)
@@ -34,7 +24,6 @@ namespace Brick
             glClear(GL_COLOR_BUFFER_BIT);
             window->onUpdate();
         }
->>>>>>> 025627b... event dispathcer done
     }
 
     void Application::onEvent(Event& event)

@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-
-#include <string>
-=======
 #pragma once
 #include "../../stdafx.h"
->>>>>>> 025627b... event dispathcer done
 
 #define BIT(x) (1 << x)
 
@@ -33,9 +28,9 @@ namespace Brick {
     private:
         friend class EventDis;
     public:
-        virtual EventType getEventType() const = 0;
+        virtual EventType getEventType() const { return type; }
         virtual const char* getName() const = 0;
-        virtual int getEventCatos() const = 0;
+        virtual int getEventCatos() const { return eventCato; }
         virtual std::string ToString() const { return getName(); }
 
         inline bool hasEventCato(EventCato eventCato)
@@ -44,16 +39,29 @@ namespace Brick {
         }
     protected:
         EventType type;
-        int EventCato;
+        int eventCato;
         bool handled = false;
     };
     
     class EventDis
     {
-    private:
-        
+        template<typename T>
+        using EventFn = std::function<bool(T&)>;
     public:
+        EventDis(Event &event) : event(event) {}
 
+        template<typename T>
+        bool dispatch(EventFn<T> func)
+        {
+            if(event.getEventType() == T::getStaticType())
+            {
+                event.handled = func(*(T*)&event);
+                return true;
+            }
+            return false;
+        }
+    private:
+        Event &event;
     };    
 
 }

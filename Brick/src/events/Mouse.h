@@ -16,6 +16,7 @@ namespace Brick
         inline float getY() const { return y; }
         static EventType getStaticType() { return EventType::MOUSE_MOVED; }
         virtual EventType getEventType() const override { return getStaticType();}
+        inline virtual const char* getName() const override { return "MouseMoved"; }
     private:
         float x,y;
     };
@@ -32,6 +33,7 @@ namespace Brick
         inline float getY() const { return y; }
         static EventType getStaticType() { return EventType::MOUSE_SCROLLED; }
         virtual EventType getEventType() const override { return getStaticType();}
+        inline virtual const char* getName() const override { return "MouseScrolled"; }
     private:
         float x,y;
     };
@@ -58,6 +60,7 @@ namespace Brick
         }
         static EventType getStaticType() { return EventType::MOUSE_BUTTON_PRESSED; }
         virtual EventType getEventType() const override { return getStaticType();}
+        inline virtual const char* getName() const override { return "MouseButtonPressed"; }
     };
 
     class MouseButtonReleased : public MouseButton 
@@ -69,5 +72,6 @@ namespace Brick
         }
         static EventType getStaticType() { return EventType::MOUSE_BUTTON_RELEASED; }
         virtual EventType getEventType() const override { return getStaticType();}
+        inline virtual const char* getName() const override { return "MouseButtonReleased"; }
     };
 } // namespace Brick
