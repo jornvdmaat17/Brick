@@ -1,4 +1,7 @@
 21-01-20 4 uur -> videos over opzet gekeken en begonnen aan basic entrypoint
+22-01-20 2 uur -> simplelogger en logger gemaakt
+22-01-20 3 uur -> events aangemaakt
+23-01-20 2 uur -> windows aangemaakt en glfw gedownload
 
 
 23-01-20 2 uur -> windows aangemaakt en glfw gedownload
