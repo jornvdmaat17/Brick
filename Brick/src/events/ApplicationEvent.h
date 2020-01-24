@@ -1,4 +1,4 @@
-#pragma once
+
 #include "Event.h"
 
 namespace Brick
@@ -12,9 +12,6 @@ namespace Brick
         }   
         inline unsigned int getWidth(){ return width; }
         inline unsigned int getHeight(){ return height; }
-        static EventType getStaticType() { return EventType::WINDOW_RESIZE; }
-        virtual EventType getEventType() const override { return getStaticType();}
-        inline virtual const char* getName() const override { return "WindowResize"; }
     private:
         unsigned int width, height;
     };
@@ -26,9 +23,6 @@ namespace Brick
             eventCato = EventCato::APPLICATION_EVENT;
             type = EventType::WINDOW_CLOSE;
         }
-        static EventType getStaticType() { return EventType::WINDOW_CLOSE; }
-        virtual EventType getEventType() const override { return getStaticType();}
-        inline virtual const char* getName() const override { return "WindowClose"; }
     };
 
     class WindowFocus : public Event {
@@ -38,9 +32,6 @@ namespace Brick
             eventCato = EventCato::APPLICATION_EVENT;
             type = EventType::WINDOW_FOCUS;
         }
-        static EventType getStaticType() { return EventType::WINDOW_FOCUS; }
-        virtual EventType getEventType() const override { return getStaticType();}
-        inline virtual const char* getName() const override { return "WindowFocus"; }
     };
 
     class WindowNoFocus : public Event {
@@ -50,9 +41,6 @@ namespace Brick
             eventCato = EventCato::APPLICATION_EVENT;
             type = EventType::WINDOW_NO_FOCUS;
         }
-        static EventType getStaticType() { return EventType::WINDOW_NO_FOCUS; }
-        virtual EventType getEventType() const override { return getStaticType();}
-        inline virtual const char* getName() const override { return "WindowNoFocus"; }
     };
     
 } // namespace Brick

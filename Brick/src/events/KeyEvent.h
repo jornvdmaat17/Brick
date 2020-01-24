@@ -1,46 +1,44 @@
-#pragma once
+
 #include "Event.h"
 
 namespace Brick
 {
     
-    class Key : public Event 
+    class KeyEvent : public Event 
     {
     public:
         inline int getKey() const { return key; }
     protected:
-        Key(int key) : key(key) 
+        KeyEvent(int key) : key(key) 
         {
             eventCato = EventCato::KEYBOARD_EVENT | EventCato::INPUT_EVENT;
         }
         int key;
     };
 
-    class KeyPressed : public Key
+    class KeyPressedEvent : public KeyEvent 
     {
     public:
-        KeyPressed(int key, int count) : Key(key), count(count)
+        KeyPressedEvent(int key, int count) : KeyEvent(key), count(count)
         {
             type = EventType::KEY_PRESSED;
         }
         inline int getCount() const { return count; }
         static EventType getStaticType() { return EventType::KEY_PRESSED; }
         virtual EventType getEventType() const override { return getStaticType();}
-        inline virtual const char* getName() const override { return "KeyPressed"; }
     private:
         int count;
     };
 
-    class KeyReleased : public Key
+    class KeyReleasedEvent : public KeyEvent 
     {
     public:
-        KeyReleased(int key) : Key(key) 
+        KeyReleasedEvent(int key) : KeyEvent(key) 
         {
             type = EventType::KEY_RELEASED;
         }
         static EventType getStaticType() { return EventType::KEY_RELEASED; }
         virtual EventType getEventType() const override { return getStaticType();}    
-        inline virtual const char* getName() const override { return "KeyRelealed"; }
     };
 
 } // namespace Brick

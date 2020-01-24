@@ -1,5 +1,5 @@
-#pragma once
-#include "../../stdafx.h"
+
+#include <string>
 
 #define BIT(x) (1 << x)
 
@@ -7,7 +7,7 @@ namespace Brick {
 
     enum EventType 
     {
-        NO_EVENT = 0,
+        NONE = 0,
         WINDOW_CLOSE, WINDOW_RESIZE, WINDOW_FOCUS, WINDOW_NO_FOCUS, WINDOW_MOVED,
         KEY_PRESSED, KEY_RELEASED,
         MOUSE_BUTTON_PRESSED, MOUSE_BUTTON_RELEASED, MOUSE_MOVED, MOUSE_SCROLLED
@@ -15,7 +15,7 @@ namespace Brick {
 
     enum EventCato 
     {
-        NO_EVENT_CATO = 0,
+        NONE = 0,
         APPLICATION_EVENT = BIT(0),
         INPUT_EVENT = BIT(1),
         KEYBOARD_EVENT = BIT(2),
@@ -28,9 +28,9 @@ namespace Brick {
     private:
         friend class EventDis;
     public:
-        virtual EventType getEventType() const { return type; }
+        virtual EventType getEventType() const = 0;
         virtual const char* getName() const = 0;
-        virtual int getEventCatos() const { return eventCato; }
+        virtual int getEventCatos() const = 0;
         virtual std::string ToString() const { return getName(); }
 
         inline bool hasEventCato(EventCato eventCato)
@@ -39,29 +39,16 @@ namespace Brick {
         }
     protected:
         EventType type;
-        int eventCato;
+        int EventCato;
         bool handled = false;
     };
     
     class EventDis
     {
-        template<typename T>
-        using EventFn = std::function<bool(T&)>;
-    public:
-        EventDis(Event &event) : event(event) {}
-
-        template<typename T>
-        bool dispatch(EventFn<T> func)
-        {
-            if(event.getEventType() == T::getStaticType())
-            {
-                event.handled = func(*(T*)&event);
-                return true;
-            }
-            return false;
-        }
     private:
-        Event &event;
+        
+    public:
+
     };    
 
 }

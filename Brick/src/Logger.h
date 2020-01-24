@@ -1,4 +1,4 @@
-#pragma once
+
 #include "../lib/SimpleLogger.h"
 
 namespace Brick {
