@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 
 #include <string>
+=======
+#pragma once
+#include "../../stdafx.h"
+>>>>>>> 025627b... event dispathcer done
 
 #define BIT(x) (1 << x)
 
@@ -7,7 +12,7 @@ namespace Brick {
 
     enum EventType 
     {
-        NONE = 0,
+        NO_EVENT = 0,
         WINDOW_CLOSE, WINDOW_RESIZE, WINDOW_FOCUS, WINDOW_NO_FOCUS, WINDOW_MOVED,
         KEY_PRESSED, KEY_RELEASED,
         MOUSE_BUTTON_PRESSED, MOUSE_BUTTON_RELEASED, MOUSE_MOVED, MOUSE_SCROLLED
@@ -15,7 +20,7 @@ namespace Brick {
 
     enum EventCato 
     {
-        NONE = 0,
+        NO_EVENT_CATO = 0,
         APPLICATION_EVENT = BIT(0),
         INPUT_EVENT = BIT(1),
         KEYBOARD_EVENT = BIT(2),
